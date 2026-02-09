@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CI/CD Random Result</title>
+</head>
+<body>
+    <h1>CI/CD Pipeline Result</h1>
+
+    <p>
+        <span id="num1"></span> +
+        <span id="num2"></span> =
+        <strong><span id="result"></span></strong>
+    </p>
+
+    <button onclick="generate()">Generate New Numbers</button>
+
+    <script>
+        function generate() {
+            const a = Math.floor(Math.random() * 100);
+            const b = Math.floor(Math.random() * 100);
+
+            document.getElementById("num1").innerText = a;
+            document.getElementById("num2").innerText = b;
+            document.getElementById("result").innerText = a + b;
+        }
+
+        // Run once on page load
+        generate();
+    </script>
+</body>
+</html>
