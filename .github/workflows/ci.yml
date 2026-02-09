@@ -1,4 +1,4 @@
-name: Simple CI Pipeline
+name: CI and CD Pipeline
 
 on:
   push:
@@ -23,3 +23,21 @@ jobs:
 
       - name: Run tests
         run: pytest
+
+  deliver:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create delivery package
+        run: |
+          zip -r deliverable.zip src app.py tests requirements.txt
+          
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-app-deliverable
+          path: deliverable.zip
